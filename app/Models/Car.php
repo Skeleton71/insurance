@@ -5,22 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Owner extends Model
+class Car extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'surname'
+        'reg_number',
+        'brand',
+        'model',
+        'owner_id'
     ];
 
-    public function cars()
+    public function owner()
     {
-        return $this->hasMany(Car::class);
+        return $this->belongsTo(Owner::class);
     }
 
     public function getFullNameAttribute()
     {
-        return "{$this->name} {$this->surname}";
+        return "{$this->brand} {$this->model} ({$this->reg_number})";
     }
 }

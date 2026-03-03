@@ -31,6 +31,11 @@
                             @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label class="form-label">Account Created</label>
+                            <input type="text" class="form-control" value="{{ $owner->created_at->format('d.m.Y H:i') }}" disabled>
+                        </div>
+
                         <div class="d-flex justify-content-between">
                             <a href="{{ route('owners.index') }}" class="btn btn-secondary">Cancel</a>
                             <button type="submit" class="btn btn-primary">Update Owner</button>

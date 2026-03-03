@@ -5,9 +5,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h3>Car Owners</h3>
-                    <a href="{{ route('owners.create') }}" class="btn btn-primary float-end">Add New Owner</a>
+                    <div>
+                        <a href="{{ route('owners.create') }}" class="btn btn-primary">Add New Owner</a>
+                        <a href="{{ route('cars.index') }}" class="btn btn-secondary">Cars</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     @if($owners->count() > 0)
