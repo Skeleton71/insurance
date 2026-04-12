@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class CarController extends Controller
+class CarController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('auth'),
+            new Middleware('role:admin,editor,visitor', only: ['index', 'show']),
+            new Middleware('role:admin,editor', only: ['create', 'store', 'edit', 'update', 'destroy']),
+        ];
+    }
+
     public function index()
     {
         $cars = Car::with('owner')->get();
