@@ -66,6 +66,14 @@ Route::post('/forgot-password', function (Illuminate\Http\Request $request) {
     return back()->with('status', 'If that email address is in our database, we will send you a password reset link.');
 })->name('password.email');
 
+Route::get('/language/{lang}', function ($lang) {
+    if (!in_array($lang, ['en', 'ru'])) {
+        $lang = 'en';
+    }
+    session(['locale' => $lang]);
+    return redirect()->back();
+})->name('language.set');
+
 Route::get('/', function () {
     return redirect('/cars');
 });

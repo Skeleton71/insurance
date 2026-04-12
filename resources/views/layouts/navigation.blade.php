@@ -20,9 +20,25 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="ms-3 relative">
+                    <div class="space-x-1 flex">
+                        @if(session('locale', 'en') === 'en')
+                            <span class="px-3 py-2 text-sm font-medium text-gray-900">EN</span>
+                        @else
+                            <a href="{{ route('language.set', 'en') }}" class="px-3 py-2 text-sm text-gray-600 hover:text-gray-900">EN</a>
+                        @endif
+                        <span class="text-gray-400">|</span>
+                        @if(session('locale', 'en') === 'ru')
+                            <span class="px-3 py-2 text-sm font-medium text-gray-900">RU</span>
+                        @else
+                            <a href="{{ route('language.set', 'ru') }}" class="px-3 py-2 text-sm text-gray-600 hover:text-gray-900">RU</a>
+                        @endif
+                    </div>
+                </div>
+
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 ms-4">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">

@@ -6,14 +6,14 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h3>Add New Car</h3>
+                    <h3>{{ __('messages.add_new_car') }}</h3>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('cars.store') }}" method="POST">
                         @csrf
                         
                         <div class="mb-3">
-                            <label for="reg_number" class="form-label">Registration Number</label>
+                            <label for="reg_number" class="form-label">{{ __('messages.registration_number') }}</label>
                             <input type="text" class="form-control @error('reg_number') is-invalid @enderror" 
                                    id="reg_number" name="reg_number" value="{{ old('reg_number') }}" required>
                             @error('reg_number')
@@ -40,10 +40,10 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="owner_id" class="form-label">Owner</label>
+                            <label for="owner_id" class="form-label">{{ __('messages.owner') }}</label>
                             <select class="form-select @error('owner_id') is-invalid @enderror" 
                                     id="owner_id" name="owner_id" required>
-                                <option value="">Select Owner</option>
+                                <option value="">{{ __('messages.select_owner') }}</option>
                                 @foreach($owners as $owner)
                                     <option value="{{ $owner->id }}" {{ old('owner_id') == $owner->id ? 'selected' : '' }}>
                                         {{ $owner->full_name }}
@@ -56,8 +56,8 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('cars.index') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Save Car</button>
+                            <a href="{{ route('cars.index') }}" class="btn btn-secondary">{{ __('messages.cancel') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('messages.save_car') }}</button>
                         </div>
                     </form>
                 </div>

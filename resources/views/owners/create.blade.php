@@ -6,14 +6,14 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h3>Add New Owner</h3>
+                    <h3>{{ __('messages.add_new_owner') }}</h3>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('owners.store') }}" method="POST">
                         @csrf
                         
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">{{ __('messages.name_field') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" 
                                    id="name" name="name" value="{{ old('name') }}" required>
                             @error('name')
@@ -31,8 +31,8 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('owners.index') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Save Owner</button>
+                            <a href="{{ route('owners.index') }}" class="btn btn-secondary">{{ __('messages.cancel') }}</a>
+                            <button type="submit" class="btn btn-primary">{{ __('messages.save_owner') }}</button>
                         </div>
                     </form>
                 </div>
