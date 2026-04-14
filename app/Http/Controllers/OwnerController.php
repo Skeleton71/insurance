@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreOwnerRequest;
+use App\Http\Requests\UpdateOwnerRequest;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -29,17 +30,12 @@ class OwnerController extends Controller implements HasMiddleware
         return view('owners.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreOwnerRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'surname' => 'required'
-        ]);
-
-        Owner::create($validated);
+        Owner::create($request->validated());
 
         return redirect()->route('owners.index')
-            ->with('success', 'Owner added successfully');
+            ->with('success', __('messages.owner_added_successfully'));
     }
 
     public function show(Owner $owner)
@@ -53,17 +49,12 @@ class OwnerController extends Controller implements HasMiddleware
         return view('owners.edit', compact('owner'));
     }
 
-    public function update(Request $request, Owner $owner)
+    public function update(UpdateOwnerRequest $request, Owner $owner)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'surname' => 'required'
-        ]);
-
-        $owner->update($validated);
+        $owner->update($request->validated());
 
         return redirect()->route('owners.index')
-            ->with('success', 'Owner updated successfully');
+            ->with('success', __('messages.owner_updated_successfully'));
     }
 
     public function destroy(Owner $owner)
@@ -71,6 +62,6 @@ class OwnerController extends Controller implements HasMiddleware
         $owner->delete();
 
         return redirect()->route('owners.index')
-            ->with('success', 'Owner deleted successfully');
+            ->with('success', __('messages.owner_deleted_successfully'));
     }
 }

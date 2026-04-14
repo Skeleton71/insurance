@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="surname" class="form-label">Surname</label>
+                            <label for="surname" class="form-label">{{ __('messages.surname') }}</label>
                             <input type="text" class="form-control @error('surname') is-invalid @enderror" 
                                    id="surname" name="surname" value="{{ old('surname', $owner->surname) }}" required>
                             @error('surname')

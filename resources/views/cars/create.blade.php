@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="brand" class="form-label">Brand</label>
+                            <label for="brand" class="form-label">{{ __('messages.brand') }}</label>
                             <input type="text" class="form-control @error('brand') is-invalid @enderror" 
                                    id="brand" name="brand" value="{{ old('brand') }}" required>
                             @error('brand')
@@ -31,7 +31,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="model" class="form-label">Model</label>
+                            <label for="model" class="form-label">{{ __('messages.model') }}</label>
                             <input type="text" class="form-control @error('model') is-invalid @enderror" 
                                    id="model" name="model" value="{{ old('model') }}" required>
                             @error('model')

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Owner;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 
@@ -31,19 +32,12 @@ class CarController extends Controller implements HasMiddleware
         return view('cars.create', compact('owners'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCarRequest $request)
     {
-        $validated = $request->validate([
-            'reg_number' => 'required|unique:cars',
-            'brand' => 'required',
-            'model' => 'required',
-            'owner_id' => 'required|exists:owners,id'
-        ]);
-
-        Car::create($validated);
+        Car::create($request->validated());
 
         return redirect()->route('cars.index')
-            ->with('success', 'Car added successfully');
+            ->with('success', __('messages.car_added_successfully'));
     }
 
     public function show(Car $car)
@@ -58,19 +52,12 @@ class CarController extends Controller implements HasMiddleware
         return view('cars.edit', compact('car', 'owners'));
     }
 
-    public function update(Request $request, Car $car)
+    public function update(UpdateCarRequest $request, Car $car)
     {
-        $validated = $request->validate([
-            'reg_number' => 'required|unique:cars,reg_number,' . $car->id,
-            'brand' => 'required',
-            'model' => 'required',
-            'owner_id' => 'required|exists:owners,id'
-        ]);
-
-        $car->update($validated);
+        $car->update($request->validated());
 
         return redirect()->route('cars.index')
-            ->with('success', 'Car updated successfully');
+            ->with('success', __('messages.car_updated_successfully'));
     }
 
     public function destroy(Car $car)
@@ -78,6 +65,6 @@ class CarController extends Controller implements HasMiddleware
         $car->delete();
 
         return redirect()->route('cars.index')
-            ->with('success', 'Car deleted successfully');
+            ->with('success', __('messages.car_deleted_successfully'));
     }
 }
