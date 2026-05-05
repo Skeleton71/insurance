@@ -92,4 +92,12 @@ return [
     'surname_string' => 'Owner last name must be text.',
     'surname_min' => 'Owner last name must be at least 2 characters.',
     'surname_max' => 'Owner last name must not exceed 50 characters.',
+    
+    'upload_photos' => 'Upload Photos',
+    'photo_upload_help' => 'Select multiple image files (JPEG, PNG, JPG, GIF). Max 2MB each. Maximum 5 photos per vehicle.',
+    'current_photos' => 'Current Photos',
+    'delete_photo' => 'Delete',
+    'confirm_delete_photo' => 'Are you sure you want to delete this photo?',
+    'photo_deleted_successfully' => 'Photo deleted successfully',
+    'photo_limit_exceeded' => 'Maximum 5 photos allowed per vehicle',
 ];

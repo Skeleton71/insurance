@@ -17,6 +17,8 @@ class UpdateCarRequest extends FormRequest
             'brand' => 'required|string|min:2|max:50',
             'model' => 'required|string|min:2|max:50',
             'owner_id' => 'required|exists:owners,id',
+            'photos' => 'nullable|array|max:5',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
     public function messages(): array

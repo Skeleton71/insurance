@@ -112,5 +112,6 @@ Route::middleware('auth')->group(function () {
     })->name('profile.destroy');
 });
 
+Route::delete('admin/car-photos/{photo}/delete', [CarController::class, 'deletePhoto'])->name('car-photos.delete');
 Route::resource('owners', OwnerController::class);
 Route::resource('cars', CarController::class);

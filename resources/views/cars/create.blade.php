@@ -9,8 +9,18 @@
                     <h3>{{ __('messages.add_new_car') }}</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('cars.store') }}" method="POST">
+                    <form action="{{ route('cars.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         
                         <div class="mb-3">
                             <label for="reg_number" class="form-label">{{ __('messages.registration_number') }}</label>
@@ -51,6 +61,19 @@
                                 @endforeach
                             </select>
                             @error('owner_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="photos" class="form-label">{{ __('messages.upload_photos') }}</label>
+                            <input type="file" class="form-control @error('photos') is-invalid @enderror" 
+                                   id="photos" name="photos[]" multiple accept="image/*">
+                            <div class="form-text">{{ __('messages.photo_upload_help') }}</div>
+                            @error('photos')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            @error('photos.*')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

@@ -21,6 +21,11 @@ class Car extends Model
         return $this->belongsTo(Owner::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     public function getFullNameAttribute()
     {
         return "{$this->brand} {$this->model} ({$this->reg_number})";

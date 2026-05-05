@@ -47,6 +47,24 @@
                             <p class="fw-bold">{{ $car->updated_at->format('d.m.Y H:i') }}</p>
                         </div>
                     </div>
+
+                    @if($car->photos->count() > 0)
+                    <div class="mt-4">
+                        <h4>{{ __('messages.current_photos') }}</h4>
+                        <div class="row">
+                            @foreach($car->photos as $photo)
+                            <div class="col-md-4 mb-3">
+                                <div class="card">
+                                    <img src="{{ $photo->url }}" class="card-img-top" alt="{{ $photo->original_name }}" style="height: 200px; object-fit: cover;">
+                                    <div class="card-body p-2">
+                                        <p class="card-text small">{{ $photo->original_name }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
